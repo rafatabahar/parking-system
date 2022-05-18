@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  app:
+    container_name: parking-system-app
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    volumes: ['./:/usr/src/app']
+
+    command: [npm,run,start]
+
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    # logging:
+    #   driver: "none"
