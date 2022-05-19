@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ts-node ./scr/server.ts",
+    "test": "jest",
     "build": "tsc && nodemon ./dist/server.js",
     "start": "ts-node-dev ./src/server.ts",
     "swagger": "tsoa spec"
@@ -25,7 +25,10 @@
     "typescript": "^4.6.4"
   },
   "devDependencies": {
+    "@types/jest": "^27.5.1",
     "@types/swagger-ui-express": "^4.1.3",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.2",
     "ts-node-dev": "^1.1.8"
   }
 }

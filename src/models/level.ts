@@ -77,4 +77,4 @@ const Level = mongoose.model<LevelDoc, levelModelInterface>('Level', levelSchema
 //   number_of_slots: 10
 // })
 
-export { Level }
+export { Level, ILevel }

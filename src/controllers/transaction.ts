@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 // import { Get, Post, Route } from "tsoa";
-import { Level } from '../models/level'
+import { Level, ILevel } from '../models/level'
 import { Transaction } from '../models/transaction'
 
 export default class TransactionController {
@@ -47,9 +47,7 @@ export default class TransactionController {
       'name': level
     });
 
-    const check_data = levelData!.slots.find((row: any)=>{
-      return row.number == slot
-    })
+    const check_data = this.checkSlotNumber(levelData!, slot);
 
     if (check_data) {
       // console.log("data found");
@@ -70,5 +68,11 @@ export default class TransactionController {
       // console.log("data not found");
       return res.status(400).json({ message: "Slot number not found" })
     }
+  }
+
+  checkSlotNumber(levelData: ILevel, slot_number: number) {
+    return levelData!.slots!.find((row: any)=>{
+      return row.number == slot_number
+    })
   }
 }
