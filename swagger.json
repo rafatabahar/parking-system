@@ -1,0 +1,212 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Parking System Application API",
+    "version": "1.0.0",
+    "title": "Parking API 1.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Transaction",
+      "description": "Main api for parking system"
+    },
+    {
+      "name": "level",
+      "description": "Building level for parking slots"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/park": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Register for parking",
+        "description": "",
+        "operationId": "park",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/leave": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Leave parking slot",
+        "description": "",
+        "operationId": "leavePark",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Leave body",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Slot"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/level": {
+      "get": {
+        "tags": [
+          "level"
+        ],
+        "summary": "Get all level and parking slots",
+        "description": "",
+        "operationId": "getAllLevel",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Level"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "level"
+        ],
+        "summary": "Add new building level and generate parking slots",
+        "description": "",
+        "operationId": "addLevel",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Level body",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Level"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Level"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Level": {
+      "type": "object",
+      "required": [
+        "name",
+        "number_of_slots"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "B1"
+        },
+        "number_of_slots": {
+          "type": "integer",
+          "example": 10
+        }
+      },
+      "xml": {
+        "name": "Level"
+      }
+    },
+    "Slot": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "example": "B1"
+        },
+        "slot": {
+          "type": "integer",
+          "example": 1
+        }
+      },
+      "xml": {
+        "name": "Slot"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
