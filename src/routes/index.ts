@@ -8,11 +8,11 @@ const levelController = new LevelController();
 const transactionController = new TransactionController();
 
 // level api
-router.get('/level', levelController.getAllLevel);
-router.post('/level', levelController.createLevel);
+router.get('/level', levelController.getAllLevel.bind(levelController));
+router.post('/level', levelController.createLevel.bind(levelController));
 
 // transaction api
-router.post('/park', transactionController.park);
-router.post('/leave', transactionController.leave);
+router.post('/park', transactionController.park.bind(transactionController));
+router.post('/leave', transactionController.leave.bind(transactionController));
 
 export default router;

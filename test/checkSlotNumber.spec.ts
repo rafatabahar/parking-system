@@ -32,7 +32,6 @@ describe('Function for checking parking slot number in level data', () => {
     
     const check = transactionController.checkSlotNumber(dummyLevelData, 1);
     
-
     expect(check).not.toBeNull();
     expect(check).not.toBeUndefined();
     expect(check).toBeTruthy();
